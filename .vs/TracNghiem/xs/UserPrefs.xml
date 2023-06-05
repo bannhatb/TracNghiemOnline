@@ -1,0 +1,53 @@
+﻿<Properties StartupConfiguration="{E53D3DD2-7569-4D1D-AA7C-7CE78E4354C2}|https">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.TracNghiem.WebAPI PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="TracNghiem.Domain/EntityConfigurations/LevelEntityTypeConfiguration.cs">
+    <Files>
+      <File FileName="TracNghiem.Domain/Entities/Exam.cs" Line="9" Column="37" />
+      <File FileName="TracNghiem.Domain/Entities/Level.cs" Line="1" Column="1" />
+      <File FileName="TracNghiem.Domain/Entities/Question.cs" Line="12" Column="1" />
+      <File FileName="TracNghiem.Domain/EntityConfigurations/QuestionEntityTypeConfiguration.cs" Line="1" Column="1" />
+      <File FileName="TracNghiem.Domain/EntityConfigurations/ExamEntityTypeConfiguration.cs" Line="31" Column="41" />
+      <File FileName="TracNghiem.Domain/EntityConfigurations/LevelEntityTypeConfiguration.cs" Line="18" Column="31" />
+      <File FileName="TracNghiem.WebAPI/Services/Audience.cs" Line="15" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="TracNghiem" expanded="True">
+            <Node name="TracNghiem.Domain" expanded="True">
+              <Node name="Entities" expanded="True" />
+              <Node name="EntityConfigurations" expanded="True">
+                <Node name="LevelEntityTypeConfiguration.cs" selected="True" />
+              </Node>
+              <Node name="Enum" expanded="True" />
+              <Node name="Repositories" expanded="True" />
+            </Node>
+            <Node name="TracNghiem.WebAPI" expanded="True">
+              <Node name="Application" expanded="True">
+                <Node name="Behavior" expanded="True" />
+                <Node name="Commands" expanded="True">
+                  <Node name="AccountCommands" expanded="True" />
+                </Node>
+                <Node name="Validations" expanded="True">
+                  <Node name="AccountValidators" expanded="True" />
+                </Node>
+              </Node>
+              <Node name="Controllers" expanded="True" />
+              <Node name="Infrastructure" expanded="True">
+                <Node name="Filters" expanded="True" />
+                <Node name="Response" expanded="True" />
+              </Node>
+              <Node name="Services" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+</Properties>

@@ -1,0 +1,14 @@
+/Users/vovanban/Projects/TracNghiem/TracNghiem.Domain/bin/Debug/net7.0/TracNghiem.Domain.deps.json
+/Users/vovanban/Projects/TracNghiem/TracNghiem.Domain/bin/Debug/net7.0/TracNghiem.Domain.runtimeconfig.json
+/Users/vovanban/Projects/TracNghiem/TracNghiem.Domain/bin/Debug/net7.0/TracNghiem.Domain.dll
+/Users/vovanban/Projects/TracNghiem/TracNghiem.Domain/bin/Debug/net7.0/TracNghiem.Domain.pdb
+/Users/vovanban/Projects/TracNghiem/TracNghiem.Domain/obj/Debug/net7.0/TracNghiem.Domain.csproj.AssemblyReference.cache
+/Users/vovanban/Projects/TracNghiem/TracNghiem.Domain/obj/Debug/net7.0/TracNghiem.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/vovanban/Projects/TracNghiem/TracNghiem.Domain/obj/Debug/net7.0/TracNghiem.Domain.AssemblyInfoInputs.cache
+/Users/vovanban/Projects/TracNghiem/TracNghiem.Domain/obj/Debug/net7.0/TracNghiem.Domain.AssemblyInfo.cs
+/Users/vovanban/Projects/TracNghiem/TracNghiem.Domain/obj/Debug/net7.0/TracNghiem.Domain.csproj.CoreCompileInputs.cache
+/Users/vovanban/Projects/TracNghiem/TracNghiem.Domain/obj/Debug/net7.0/TracNghiem.Domain.dll
+/Users/vovanban/Projects/TracNghiem/TracNghiem.Domain/obj/Debug/net7.0/refint/TracNghiem.Domain.dll
+/Users/vovanban/Projects/TracNghiem/TracNghiem.Domain/obj/Debug/net7.0/TracNghiem.Domain.pdb
+/Users/vovanban/Projects/TracNghiem/TracNghiem.Domain/obj/Debug/net7.0/TracNghiem.Domain.genruntimeconfig.cache
+/Users/vovanban/Projects/TracNghiem/TracNghiem.Domain/obj/Debug/net7.0/ref/TracNghiem.Domain.dll

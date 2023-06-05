@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1705.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TracNghiem.WebAPI", "TracNghiem.WebAPI\TracNghiem.WebAPI.csproj", "{E53D3DD2-7569-4D1D-AA7C-7CE78E4354C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TracNghiem.Domain", "TracNghiem.Domain\TracNghiem.Domain.csproj", "{D0B68176-29B9-4E2C-8FA4-A51A02289D13}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E53D3DD2-7569-4D1D-AA7C-7CE78E4354C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E53D3DD2-7569-4D1D-AA7C-7CE78E4354C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E53D3DD2-7569-4D1D-AA7C-7CE78E4354C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E53D3DD2-7569-4D1D-AA7C-7CE78E4354C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0B68176-29B9-4E2C-8FA4-A51A02289D13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0B68176-29B9-4E2C-8FA4-A51A02289D13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0B68176-29B9-4E2C-8FA4-A51A02289D13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0B68176-29B9-4E2C-8FA4-A51A02289D13}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A1DD91CE-C492-46ED-AF31-18A23EBD235F}
+	EndGlobalSection
+EndGlobal

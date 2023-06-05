@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "i8ObkGWDepgxTNqB0HSJ4xsSh8e+hkW8RKWh3cRwkHQ=",
+  "Source": "TracNghiem.WebAPI",
+  "BasePath": "_content/TracNghiem.WebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
