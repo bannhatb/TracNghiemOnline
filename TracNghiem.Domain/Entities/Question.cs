@@ -9,6 +9,7 @@ namespace TracNghiem.Domain.Entities
         public int TypeId { get; set; }
         public int RightCount { get; set; }
         public int? LevelId { get; set; }
+        public string UserCreate { get; set; }
 
     }
 }

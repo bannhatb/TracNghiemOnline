@@ -254,9 +254,11 @@ namespace TracNghiem.WebAPI.Controllers
             {
                 return NotFound(ErrorCode.NotFound);
             }
-            var questionExam = new QuestionExam();
-            questionExam.QuestionId = questionId;
-            questionExam.ExamId = examId;
+            var questionExam = new QuestionExam()
+            {
+                QuestionId = questionId,
+                ExamId = examId
+            };
             _questionRepository.Delete(questionExam);
 
             var result = await _questionRepository.UnitOfWork.SaveAsync();
@@ -285,14 +287,42 @@ namespace TracNghiem.WebAPI.Controllers
             });
         }
 
+        // [HttpGet]
+        // [Route("get-list-id-question")]
+        // [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status200OK)]
+        // [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
+        // public async Task<IActionResult> GetListIdQuestion([FromQuery] int categoryId, [FromQuery] int questionCount, [FromQuery] int levelId)
+        // {
+        //     var listIdQuestion = _questionRepository.GetListIdQuestionByCateIdAndLevelId(categoryId, questionCount, levelId);
+        //     if (listIdQuestion == null)
+        //         return BadRequest(new Response<ResponseDefault>()
+        //         {
+        //             State = false,
+        //             Message = ErrorCode.ExcuteDB
+        //         });
+
+        //     return Ok(new Response<ResponseDefault>()
+        //     {
+        //         State = true,
+        //         Message = ErrorCode.Success,
+        //         Result = new ResponseDefault
+        //         {
+        //             Data = listIdQuestion
+        //         }
+
+        //     });
+        // }
+
+
         [HttpGet]
-        [Route("get-list-id-question")]
+        [Route("get-list-question-of-user")]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetListIdQuestion([FromQuery] int categoryId, [FromQuery] int questionCount, [FromQuery] int levelId)
+        public async Task<IActionResult> GetListIdQuestion()
         {
-            var listIdQuestion = _questionRepository.GetListIdQuestionByCategoryId(categoryId, questionCount, levelId);
-            if (listIdQuestion == null)
+            string userName = _httpContext.HttpContext.User.Identity.Name.ToString();
+            var listQuestion = _questionRepository.GetListQuestionOfUser(userName);
+            if (listQuestion == null)
                 return BadRequest(new Response<ResponseDefault>()
                 {
                     State = false,
@@ -305,7 +335,7 @@ namespace TracNghiem.WebAPI.Controllers
                 Message = ErrorCode.Success,
                 Result = new ResponseDefault
                 {
-                    Data = listIdQuestion
+                    Data = listQuestion
                 }
 
             });

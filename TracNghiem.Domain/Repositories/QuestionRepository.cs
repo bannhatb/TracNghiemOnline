@@ -86,7 +86,15 @@ namespace TracNghiem.Domain.Repositories
             _context.Entry(answer).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
         }
 
-        public List<int> GetListIdQuestionByCategoryId(int categoryId, int questionCount, int levelId)
+
+        /// <summary>
+        /// get IdQuestion by cateId and levelId
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <param name="questionCount"></param>
+        /// <param name="levelId"></param>
+        /// <returns></returns>
+        public List<int> GetListIdQuestionByCateIdAndLevelId(int categoryId, int questionCount, int levelId)
         {
 
             List<int> listQuestionId = _context.Categories
@@ -111,6 +119,29 @@ namespace TracNghiem.Domain.Repositories
             return listQuestionId;
         }
 
+        public List<int> GetListIdQuestionByCateId(int categoryId, int questionCount)
+        {
 
+            List<int> listQuestionId = _context.Categories
+                                    .Where(x => x.Id == categoryId)
+                                    .Join(_context.QuestionCategories,
+                                    category => category.Id,
+                                    questionCategory => questionCategory.CategoryId,
+                                    (category, questionCategory) => new { category, questionCategory })
+                                    .Join(_context.Questions,
+                                    categoryQuestionCategory => categoryQuestionCategory.questionCategory.QuestionId,
+                                    question => question.Id,
+                                    (categoryQuestionCategory, question) => new { categoryQuestionCategory, question })
+                                    .Select(x => x.question.Id)
+                                    .OrderBy(x => Guid.NewGuid()).Take(questionCount)
+                                    .ToList();
+
+            return listQuestionId;
+        }
+
+        public List<Question> GetListQuestionOfUser(string userName)
+        {
+            return _context.Questions.Where(x => x.UserCreate == userName).Select(x => x).ToList();
+        }
     }
 }

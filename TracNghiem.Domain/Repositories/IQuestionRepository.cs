@@ -1,10 +1,4 @@
 ﻿using TracNghiem.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TracNghiem.Domain.Repositories;
 
 namespace TracNghiem.Domain.Repositories
 {
@@ -30,6 +24,8 @@ namespace TracNghiem.Domain.Repositories
         void Edit(Answer answer);
         void Delete(Answer answer);
 
-        List<int> GetListIdQuestionByCategoryId(int categoryId, int questionCount, int levelId);
+        List<int> GetListIdQuestionByCateIdAndLevelId(int categoryId, int questionCount, int levelId);
+        List<int> GetListIdQuestionByCateId(int categoryId, int questionCount);
+        List<Question> GetListQuestionOfUser(string userName);
     }
 }
