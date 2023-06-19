@@ -18,9 +18,14 @@ namespace TracNghiem.WebAPI.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public AccountController(IMediator mediator)
+        private readonly IHttpContextAccessor _httpContext;
+        public AccountController(
+            IMediator mediator,
+            IHttpContextAccessor httpContext
+            )
         {
             _mediator = mediator;
+            _httpContext = httpContext;
         }
 
 
@@ -36,10 +41,24 @@ namespace TracNghiem.WebAPI.Controllers
             return new Audience() { Issuer = Issuer, Secret = "abc", Name = name };
         }
 
+        [HttpGet]
+        [Route("get-username")]
+        public IActionResult GetUserNameCurrent()
+        {
+            return Ok(new Response<ResponseDefault>()
+            {
+                State = true,
+                Message = ErrorCode.Success,
+                Result = new ResponseDefault()
+                {
+                    Data = _httpContext.HttpContext.User.Identity.Name.ToString()
+                }
+            });
+        }
 
         [HttpPost]
         [Route("register")]
-        public async Task<IActionResult> Register([FromBody]RegisterCommand command)
+        public async Task<IActionResult> Register([FromBody] RegisterCommand command)
         {
             if (command == null)
             {

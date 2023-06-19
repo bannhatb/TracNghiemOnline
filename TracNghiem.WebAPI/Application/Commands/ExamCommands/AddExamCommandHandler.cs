@@ -35,10 +35,18 @@ namespace TracNghiem.WebAPI.Application.Commands.ExamCommands
             string userName = _httpContext.HttpContext.User.Identity.Name.ToString();
             Exam exam = new Exam();
             exam.IsPublic = request.IsPublic;
-            exam.QuestionCount = request.QuestionCount;
             exam.Title = request.Title;
             exam.Time = request.Time;
             exam.CreateBy = userName;
+
+            if (request.RandomQuestion == true)
+            {
+                exam.QuestionCount = request.QuestionCount;
+            }
+            else
+            {
+                exam.QuestionCount = request.QuestionCountLevel1 + request.QuestionCountLevel2 + request.QuestionCountLevel3 + request.QuestionCountLevel4 + request.QuestionCountLevel5;
+            }
 
             _examRepository.Add(exam);
 
@@ -83,21 +91,6 @@ namespace TracNghiem.WebAPI.Application.Commands.ExamCommands
             }
             else
             {
-                //Kiem tra tong so cau hoi
-                int totalQuestion = request.QuestionCountLevel1 + request.QuestionCountLevel2 + request.QuestionCountLevel3 + request.QuestionCountLevel4 + request.QuestionCountLevel5;
-                if (totalQuestion != request.QuestionCount)
-                {
-                    return new Response<ResponseDefault>()
-                    {
-                        State = false,
-                        Message = ErrorCode.NotMapQuestionCount,
-                        Result = new ResponseDefault()
-                        {
-                            Data = "total question not equal"
-                        }
-                    };
-                }
-
                 // lay question id theo tung loai cate
                 foreach (int cate in request.Categories)
                 {
