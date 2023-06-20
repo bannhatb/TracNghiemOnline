@@ -13,5 +13,6 @@ namespace TracNghiem.Domain.Repositories
         void Add(Level level);
         void Edit(Level level);
         void Delete(Level level);
+        Task<List<Level>> GetLevels();
     }
 }

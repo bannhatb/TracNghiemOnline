@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace TracNghiem.Domain.Repositories
 {
@@ -31,6 +32,12 @@ namespace TracNghiem.Domain.Repositories
         public void Edit(Level level)
         {
             _context.Entry(level).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        }
+
+        public async Task<List<Level>> GetLevels()
+        {
+            var levels = await _context.Levels.Select(x => x).ToListAsync();
+            return levels;
         }
     }
 }
