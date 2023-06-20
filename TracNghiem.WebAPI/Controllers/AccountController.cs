@@ -41,20 +41,7 @@ namespace TracNghiem.WebAPI.Controllers
             return new Audience() { Issuer = Issuer, Secret = "abc", Name = name };
         }
 
-        [HttpGet]
-        [Route("get-username")]
-        public IActionResult GetUserNameCurrent()
-        {
-            return Ok(new Response<ResponseDefault>()
-            {
-                State = true,
-                Message = ErrorCode.Success,
-                Result = new ResponseDefault()
-                {
-                    Data = _httpContext.HttpContext.User.Identity.Name.ToString()
-                }
-            });
-        }
+
 
         [HttpPost]
         [Route("register")]
