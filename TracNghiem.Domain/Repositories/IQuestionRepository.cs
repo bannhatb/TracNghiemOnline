@@ -27,5 +27,6 @@ namespace TracNghiem.Domain.Repositories
         List<int> GetListIdQuestionByCateIdAndLevelId(int categoryId, int questionCount, int levelId);
         List<int> GetListIdQuestionByCateId(int categoryId, int questionCount);
         List<Question> GetListQuestionOfUser(string userName);
+        List<Question> GetListAllQuestion();
     }
 }

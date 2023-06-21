@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TracNghiem.Domain.Entities;
 
 namespace TracNghiem.WebAPI.Controllers
 {
@@ -49,11 +50,11 @@ namespace TracNghiem.WebAPI.Controllers
         [Route("get-all-user")]
         [ProducesResponseType(typeof(Response<Pagination<UserQueryModel>>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetAllUser([FromQuery]UrlQuery urlQuery,[FromQuery] List<int> classIds)
+        public async Task<IActionResult> GetAllUser([FromQuery] UrlQuery urlQuery, [FromQuery] List<int> classIds)
         {
             List<UserQueryModel> listUser = await _appQueries.GetAllUser(urlQuery, classIds);
             int count = await _appQueries.CountGetllUser(urlQuery, classIds);
-            foreach(UserQueryModel user in listUser)
+            foreach (UserQueryModel user in listUser)
             {
                 user.ListRoles = await _appQueries.GetRoleUser(user.UserId);
             }
@@ -97,7 +98,7 @@ namespace TracNghiem.WebAPI.Controllers
         [Route("get-all-test")]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetAllTest([FromQuery]UrlQuery urlQuery)
+        public async Task<IActionResult> GetAllTest([FromQuery] UrlQuery urlQuery)
         {
             List<TestUserQueryModel> tests = await _appQueries.GetListTestInfo(urlQuery);
             int total = await _appQueries.CountGetListTestInfo(urlQuery);
@@ -172,7 +173,7 @@ namespace TracNghiem.WebAPI.Controllers
         [Route("get-user-detail")]
         [ProducesResponseType(typeof(Response<Pagination<UserQueryModel>>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetUserDetail([FromQuery] int userId,[FromQuery] UrlQuery urlQuery)
+        public async Task<IActionResult> GetUserDetail([FromQuery] int userId, [FromQuery] UrlQuery urlQuery)
         {
             string userName = _userRepository.Users.FirstOrDefault(x => x.Id == userId).UserName;
             UserDetailQueryModel userDetail = await _appQueries.GetUserDetail(userId);
@@ -180,7 +181,7 @@ namespace TracNghiem.WebAPI.Controllers
             userDetail.ListRoles = await _appQueries.GetRoleUser(userDetail.UserId);
             userDetail.ListTestCreate = await _appQueries.GetListTestCreateByUser(userName);
             userDetail.ListTestDid = await _appQueries.GetListTestDidByUser(userId);
-            if(userDetail == null)
+            if (userDetail == null)
             {
                 return BadRequest(new Response<ResponseDefault>()
                 {
@@ -289,6 +290,32 @@ namespace TracNghiem.WebAPI.Controllers
                 Result = new ResponseDefault()
                 {
                     Data = "Lỗi khi xóa exam"
+                }
+            });
+        }
+
+        [HttpGet]
+        [Route("get-all-question")]
+        [ProducesResponseType(typeof(Response<Pagination<Question>>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetAllQuestion()
+        {
+            var listQuestion = _questionRepository.GetListAllQuestion();
+            if (listQuestion == null)
+                return BadRequest(new Response<ResponseDefault>()
+                {
+                    State = false,
+                    Message = ErrorCode.ExcuteDB
+                });
+
+            return Ok(new Response<Pagination<Question>>()
+            {
+                State = true,
+                Message = ErrorCode.Success,
+                Result = new Pagination<Question>()
+                {
+                    Items = listQuestion,
+                    Total = listQuestion.Count()
                 }
             });
         }

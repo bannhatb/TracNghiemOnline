@@ -143,5 +143,10 @@ namespace TracNghiem.Domain.Repositories
         {
             return _context.Questions.Where(x => x.UserCreate == userName).Select(x => x).ToList();
         }
+
+        public List<Question> GetListAllQuestion()
+        {
+            return _context.Questions.Select(x => x).ToList();
+        }
     }
 }
