@@ -39,7 +39,7 @@ namespace TracNghiem.WebAPI.Application.Commands.QuestionCommands
             question.TypeId = request.Question.TypeId;
             _questionRepository.Edit(question);
 
-            List<Answer> listSame = null;
+            List<Answer> listSame = new List<Answer>();
             //danh sach answer do nguoi dung nhap vao
             // danh sach answer giu nguyen
             foreach (var ansSame in request.Answers)

@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using TracNghiem.Domain.Entities;
 using TracNghiem.Domain.Repositories;
 using TracNghiem.WebAPI.Infrastructure.Response;
+using Microsoft.AspNetCore.Authorization;
+using TracNghiem.WebAPI.Services;
 
 namespace TracNghiem.WebAPI.Controllers
 {
