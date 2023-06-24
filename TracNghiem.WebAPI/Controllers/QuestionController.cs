@@ -287,32 +287,6 @@ namespace TracNghiem.WebAPI.Controllers
             });
         }
 
-        // [HttpGet]
-        // [Route("get-list-id-question")]
-        // [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status200OK)]
-        // [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
-        // public async Task<IActionResult> GetListIdQuestion([FromQuery] int categoryId, [FromQuery] int questionCount, [FromQuery] int levelId)
-        // {
-        //     var listIdQuestion = _questionRepository.GetListIdQuestionByCateIdAndLevelId(categoryId, questionCount, levelId);
-        //     if (listIdQuestion == null)
-        //         return BadRequest(new Response<ResponseDefault>()
-        //         {
-        //             State = false,
-        //             Message = ErrorCode.ExcuteDB
-        //         });
-
-        //     return Ok(new Response<ResponseDefault>()
-        //     {
-        //         State = true,
-        //         Message = ErrorCode.Success,
-        //         Result = new ResponseDefault
-        //         {
-        //             Data = listIdQuestion
-        //         }
-
-        //     });
-        // }
-
 
         [HttpGet]
         [Route("get-list-question-of-user")]
