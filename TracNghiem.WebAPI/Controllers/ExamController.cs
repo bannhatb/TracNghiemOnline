@@ -353,5 +353,32 @@ namespace TracNghiem.WebAPI.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("get-list-exam-by-category")]
+        [ProducesResponseType(typeof(Response<Pagination<ExamQueryModel>>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetListExamByCategoryId([FromQuery] int cateId, [FromQuery] UrlQuery urlQuery)
+        {
+            string username = _httpContext.HttpContext.User.Identity.Name;
+            List<ExamQueryModel> exams = await _appQueries.GetListExamByCategoryId(cateId, urlQuery);
+            int total = exams.Count();
+            if (exams == null)
+                return BadRequest(new Response<ResponseDefault>()
+                {
+                    State = false,
+                    Message = ErrorCode.NotFound
+                });
+            return Ok(new Response<Pagination<ExamQueryModel>>()
+            {
+                State = true,
+                Message = ErrorCode.Success,
+                Result = new Pagination<ExamQueryModel>()
+                {
+                    Items = exams,
+                    Total = total
+                }
+            });
+        }
+
     }
 }

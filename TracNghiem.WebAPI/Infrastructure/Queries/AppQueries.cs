@@ -407,6 +407,37 @@ where tu.TestId = @testId AND tu.UserId = @userId ");
             }
         }
 
+        public async Task<List<ExamQueryModel>> GetListExamByCategoryId(int cateId, UrlQuery urlQuery)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append(@" SELECT e.Id, e.Title, e.Time, e.CreateBy, e.QuestionCount, e.IsPublic 
+FROM Exams as e INNER JOIN ExamCategories as ec on e.Id = ec.ExamId 
+INNER JOIN Categories as c on ec.CategoryId = c.Id 
+WHERE c.Id = @cateId ");
+                if (!string.IsNullOrWhiteSpace(urlQuery.Keyword))
+                {
+                    sb.Append(@" AND e.Title COLLATE Latin1_General_CI_AI LIKE N'%'+@Keyword+'%' ");
+                }
+                sb.Append(@"  
+ORDER BY e.Id ASC 
+OFFSET @pageSize*(@page-1) ROWS 
+FETCH NEXT @pageSize ROWS ONLY 
+");
+
+                var result = await connection
+                    .QueryAsync<ExamQueryModel>(sb.ToString(), new
+                    {
+                        cateId = cateId,
+                        Keyword = urlQuery.Keyword,
+                        page = urlQuery.Page,
+                        pageSize = urlQuery.PageSize
+                    });
+                return result.ToList();
+            }
+        }
+
 
         #endregion
         #region Users

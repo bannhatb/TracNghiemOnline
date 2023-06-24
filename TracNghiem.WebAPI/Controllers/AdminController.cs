@@ -20,7 +20,7 @@ namespace TracNghiem.WebAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(AuthenticationSchemes = "MyAuthKey")]
-    [CustomAuthorize(Allows = "Admin")]
+    [CustomAuthorize(Allows = "Teacher,Admin")]
     public class AdminController : ControllerBase
     {
         private readonly IMediator _mediator;

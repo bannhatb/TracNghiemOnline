@@ -44,6 +44,7 @@ namespace TracNghiem.WebAPI.Infrastructure.Queries
         Task<int> CountExam(UrlQuery urlQuery);
 
         Task<LevelQueryModel> GetNameLevelQuestion(int questionId);
+        Task<List<ExamQueryModel>> GetListExamByCategoryId(int cateId, UrlQuery urlQuery);
         #endregion
         #region user
         Task<List<UserQueryModel>> GetAllUser(UrlQuery urlQuery, List<int> classIds);
