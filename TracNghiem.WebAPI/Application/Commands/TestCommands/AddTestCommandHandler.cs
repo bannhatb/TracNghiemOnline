@@ -31,8 +31,8 @@ namespace TracNghiem.WebAPI.Application.Commands.TestCommands
         public async Task<Response<ResponseDefault>> Handle(AddTestCommand request, CancellationToken cancellationToken)
         {
             string userName = _httpContext.HttpContext.User.Identity.Name.ToString();
-            Exam checkSoCau = _examRepository.Exams.FirstOrDefault(x => x.Id == request.ExamId);
-            if (checkSoCau == null)
+            Exam exam = _examRepository.Exams.FirstOrDefault(x => x.Id == request.ExamId);
+            if (exam == null)
             {
                 return new Response<ResponseDefault>()
                 {
@@ -44,28 +44,9 @@ namespace TracNghiem.WebAPI.Application.Commands.TestCommands
                     }
                 };
             }
-            if (checkSoCau.QuestionCount < request.QuestionCount)
-            {
-                return new Response<ResponseDefault>()
-                {
-                    State = true,
-                    Message = "So cau hoi vuot qua so cau hoi cua exam",
-                    Result = new ResponseDefault()
-                    {
-                        Data = ErrorCode.InvalidQuestionCount
-                    }
-                };
-            }
-            Test test = new Test();
-            if (request.QuestionCount == 0)
-            {
-                test.QuestionCount = checkSoCau.QuestionCount;
-            }
-            else
-            {
-                test.QuestionCount = request.QuestionCount;
-            }
 
+            Test test = new Test();
+            test.QuestionCount = exam.QuestionCount;
             test.CreateBy = userName;
             test.HideAnswer = request.HideAnswer;
             test.StartAt = request.StartAt;
@@ -73,7 +54,7 @@ namespace TracNghiem.WebAPI.Application.Commands.TestCommands
             test.ExamId = request.ExamId;
             test.SuffleQuestion = request.ShuffleQuestion;
             test.Password = request.Password;
-            test.Time = request.Time;
+            test.Time = exam.Time;
             _testRepository.Add(test);
             int result = await _testRepository.UnitOfWork.SaveAsync(cancellationToken);
             if (result == 0)
@@ -95,7 +76,7 @@ namespace TracNghiem.WebAPI.Application.Commands.TestCommands
                 Message = ErrorCode.Success,
                 Result = new ResponseDefault()
                 {
-                    Data = test.Id
+                    Data = test
                 }
             };
         }

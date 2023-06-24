@@ -382,7 +382,7 @@ namespace TracNghiem.WebAPI.Controllers
                 Message = ErrorCode.Success,
                 Result = new Pagination<TestUserQueryModel>()
                 {
-                    Items = tests,
+                    Items = tests.ToList(),
                     Total = total
                 }
             });
