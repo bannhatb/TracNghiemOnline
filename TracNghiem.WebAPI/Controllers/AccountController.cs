@@ -88,5 +88,29 @@ namespace TracNghiem.WebAPI.Controllers
                 return BadRequest(result);
             }
         }
+
+        [HttpPost]
+        [Route("update-profile-user")]
+        [ProducesResponseType(typeof(Response<ResponseToken>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> UpdateUser(
+            [FromBody] UpdateProfileUserCommand command)
+        {
+            if (command == null)
+            {
+                return BadRequest();
+            }
+
+            var result = await _mediator.Send(command);
+
+            if (result.State)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+        }
     }
 }
