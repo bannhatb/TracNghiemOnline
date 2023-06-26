@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using TracNghiem.WebAPI.Services;
 using TracNghiem.WebAPI.Infrastructure.ModelQueries;
 using TracNghiem.WebAPI.Infrastructure.Queries;
+using Microsoft.EntityFrameworkCore;
 
 namespace TracNghiem.WebAPI.Controllers
 {
@@ -39,15 +40,17 @@ namespace TracNghiem.WebAPI.Controllers
 
         [HttpGet]
         [Route("get-username")]
-        public IActionResult GetUserNameCurrent()
+        public async Task<IActionResult> GetUserNameCurrent()
         {
+            string username = _httpContext.HttpContext.User.Identity.Name.ToString();
+            User user = await _userRepository.Users.Select(x => x).Where(x => x.UserName == username).FirstOrDefaultAsync();
             return Ok(new Response<ResponseDefault>()
             {
                 State = true,
                 Message = ErrorCode.Success,
                 Result = new ResponseDefault()
                 {
-                    Data = _httpContext.HttpContext.User.Identity.Name.ToString()
+                    Data = user
                 }
             });
         }
