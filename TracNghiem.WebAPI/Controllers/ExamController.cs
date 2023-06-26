@@ -30,7 +30,6 @@ namespace TracNghiem.WebAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(AuthenticationSchemes = "MyAuthKey")]
-    [CustomAuthorize(Allows = "Teacher,Admin")]
     public class ExamController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -61,6 +60,7 @@ namespace TracNghiem.WebAPI.Controllers
         }
         [HttpPost]
         [Route("add-exam")]
+        [CustomAuthorize(Allows = "Teacher,Admin")]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status401Unauthorized)]
@@ -85,6 +85,7 @@ namespace TracNghiem.WebAPI.Controllers
 
         [HttpPost]
         [Route("update-exam")]
+        [CustomAuthorize(Allows = "Teacher,Admin")]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status401Unauthorized)]
@@ -109,6 +110,7 @@ namespace TracNghiem.WebAPI.Controllers
 
         [HttpPost]
         [Route("delete-exam")]
+        [CustomAuthorize(Allows = "Teacher,Admin")]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status401Unauthorized)]
@@ -180,6 +182,7 @@ namespace TracNghiem.WebAPI.Controllers
 
         [HttpGet]
         [Route("get-list-exam-of-user")]
+        [CustomAuthorize(Allows = "Teacher")]
         [ProducesResponseType(typeof(Response<Pagination<ExamQueryModel>>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetListExamOfUser([FromQuery] UrlQuery urlQuery)
@@ -305,6 +308,7 @@ namespace TracNghiem.WebAPI.Controllers
         // }
         [HttpGet]
         [Route("get-list-test-of-exam")]
+        [CustomAuthorize(Allows = "Teacher,Admin")]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetListTestCreateBySelf([FromQuery] int examId)

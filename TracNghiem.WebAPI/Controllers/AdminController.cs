@@ -20,7 +20,6 @@ namespace TracNghiem.WebAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(AuthenticationSchemes = "MyAuthKey")]
-    [CustomAuthorize(Allows = "Teacher,Admin")]
     public class AdminController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -48,6 +47,7 @@ namespace TracNghiem.WebAPI.Controllers
         }
         [HttpGet]
         [Route("get-all-user")]
+        [CustomAuthorize(Allows = "Admin")]
         [ProducesResponseType(typeof(Response<Pagination<UserQueryModel>>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetAllUser([FromQuery] UrlQuery urlQuery, [FromQuery] List<int> classIds)
@@ -96,6 +96,7 @@ namespace TracNghiem.WebAPI.Controllers
         }
         [HttpGet]
         [Route("get-all-test")]
+        [CustomAuthorize(Allows = "Admin")]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetAllTest([FromQuery] UrlQuery urlQuery)
@@ -122,6 +123,7 @@ namespace TracNghiem.WebAPI.Controllers
         }
         [HttpPost]
         [Route("block-user")]
+        [CustomAuthorize(Allows = "Admin")]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status401Unauthorized)]
@@ -145,6 +147,7 @@ namespace TracNghiem.WebAPI.Controllers
         }
         [HttpGet]
         [Route("get-list-test-brief")]
+        [CustomAuthorize(Allows = "Admin")]
         [ProducesResponseType(typeof(Response<Pagination<TestUserQueryModel>>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetListTestBrief([FromQuery] UrlQuery urlQuery)
@@ -205,6 +208,7 @@ namespace TracNghiem.WebAPI.Controllers
         }
         [HttpPost]
         [Route("authen-teacher")]
+        [CustomAuthorize(Allows = "Admin")]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status401Unauthorized)]
@@ -228,6 +232,7 @@ namespace TracNghiem.WebAPI.Controllers
         }
         [HttpPost]
         [Route("authen-admin")]
+        [CustomAuthorize(Allows = "Admin")]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status401Unauthorized)]
@@ -251,6 +256,7 @@ namespace TracNghiem.WebAPI.Controllers
         }
         [HttpPost]
         [Route("delete-exam-admin")]
+        [CustomAuthorize(Allows = "Admin")]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status401Unauthorized)]
@@ -296,6 +302,7 @@ namespace TracNghiem.WebAPI.Controllers
 
         [HttpGet]
         [Route("get-all-question")]
+        [CustomAuthorize(Allows = "Admin")]
         [ProducesResponseType(typeof(Response<Pagination<Question>>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetAllQuestion()

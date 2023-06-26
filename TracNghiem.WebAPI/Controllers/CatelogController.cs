@@ -17,7 +17,6 @@ namespace TracNghiem.WebAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(AuthenticationSchemes = "MyAuthKey")]
-    [CustomAuthorize(Allows = "Teacher,Admin")]
     public class CatelogController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -30,11 +29,12 @@ namespace TracNghiem.WebAPI.Controllers
         }
         [HttpPost]
         [Route("add-category")]
+        [CustomAuthorize(Allows = "Teacher,Admin")]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> AddNewCategory([FromQuery]AddCategoryCommand command)
+        public async Task<IActionResult> AddNewCategory([FromQuery] AddCategoryCommand command)
         {
             if (command == null)
             {

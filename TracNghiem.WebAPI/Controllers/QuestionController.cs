@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TracNghiem.WebAPI.Services;
 
 namespace TracNghiem.WebAPI.Controllers
 {
@@ -42,6 +43,7 @@ namespace TracNghiem.WebAPI.Controllers
 
         [HttpPost]
         [Route("add-question-category")]
+        [CustomAuthorize(Allows = "Teacher,Admin")]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status403Forbidden)]
@@ -66,6 +68,7 @@ namespace TracNghiem.WebAPI.Controllers
 
         [HttpPost]
         [Route("add-exam-category")]
+        [CustomAuthorize(Allows = "Teacher,Admin")]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status403Forbidden)]
@@ -91,6 +94,7 @@ namespace TracNghiem.WebAPI.Controllers
 
         [HttpGet]
         [Route("get-question-detail")]
+        [CustomAuthorize(Allows = "Teacher,Admin")]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> QuestionDetail([FromQuery] int questionId)
@@ -115,6 +119,7 @@ namespace TracNghiem.WebAPI.Controllers
 
         [HttpPost]
         [Route("add-question")]
+        [CustomAuthorize(Allows = "Teacher,Admin")]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status401Unauthorized)]
@@ -163,6 +168,7 @@ namespace TracNghiem.WebAPI.Controllers
 
         [HttpPost]
         [Route("add-question-to-exam")]
+        [CustomAuthorize(Allows = "Teacher,Admin")]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status401Unauthorized)]
@@ -187,6 +193,7 @@ namespace TracNghiem.WebAPI.Controllers
 
         [HttpDelete]
         [Route("delete-question/{id}")]
+        [CustomAuthorize(Allows = "Teacher,Admin")]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status401Unauthorized)]
@@ -233,6 +240,7 @@ namespace TracNghiem.WebAPI.Controllers
 
         [HttpDelete]
         [Route("delete-question-exam")]
+        [CustomAuthorize(Allows = "Teacher,Admin")]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status401Unauthorized)]
@@ -290,9 +298,10 @@ namespace TracNghiem.WebAPI.Controllers
 
         [HttpGet]
         [Route("get-list-question-of-user")]
-        [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status200OK)]
+        [CustomAuthorize(Allows = "Teacher")]
+        [ProducesResponseType(typeof(Response<Question>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetListIdQuestion()
+        public async Task<IActionResult> GetListQuestionOfUser()
         {
             string userName = _httpContext.HttpContext.User.Identity.Name.ToString();
             var listQuestion = _questionRepository.GetListQuestionOfUser(userName);
@@ -303,15 +312,15 @@ namespace TracNghiem.WebAPI.Controllers
                     Message = ErrorCode.ExcuteDB
                 });
 
-            return Ok(new Response<ResponseDefault>()
+            return Ok(new Response<Pagination<Question>>()
             {
                 State = true,
                 Message = ErrorCode.Success,
-                Result = new ResponseDefault
+                Result = new Pagination<Question>()
                 {
-                    Data = listQuestion
+                    Items = listQuestion,
+                    Total = listQuestion.Count()
                 }
-
             });
         }
 

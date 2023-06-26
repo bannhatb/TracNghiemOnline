@@ -49,7 +49,6 @@ namespace TracNghiem.WebAPI.Controllers
         }
         [HttpPost]
         [Route("create-test")]
-        [CustomAuthorize(Allows = "Teacher,Admin")]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(Response<ResponseDefault>), StatusCodes.Status401Unauthorized)]
