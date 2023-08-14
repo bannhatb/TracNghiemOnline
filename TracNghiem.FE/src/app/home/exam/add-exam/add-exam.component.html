@@ -1,0 +1,68 @@
+<app-header></app-header>
+<br>
+<h2 class="text-center mt-5 text-uppercase">Thêm đề thi</h2>
+<div class="total shadow-lg mt-6">
+  <form [formGroup]="formAddExam" class="">
+    <div class=" form-group row align-items-center">
+      <label class="col-3">Tiêu đề: </label>
+      <input type="text" [value]="" name="Title" formControlName="Title" class="form-control col-9">
+    </div>
+    <div class=" form-group row align-items-center">
+      <label class="col-3">Thời gian làm bài (phút):</label>
+      <input type="number" [value]="" name="Time" formControlName="Time" min="0" max="4320" class="form-control col-9">
+    </div>
+    <div class=" form-group row align-items-center">
+      <label class="col-3" for="">
+        Loại đề thi:
+      </label>
+      <select name="Categories" formControlName="Categories" (change)="newCategory($event)" class="form-control col-9">
+        <option *ngFor="let ca of listCategory?.result.items" [value]="ca.id">{{ca.categoryName}}</option>
+      </select>
+    </div>
+    <div *ngIf="listCategoryChoose" class="d-flex">
+      <div *ngFor="let chooser of listCateDisplay">{{chooser}} - </div>
+    </div>
+    <div class=" form-group row align-items-center">
+      <label class="col-3">Công khai: </label>
+      <input type="checkbox" name="IsPublic" formControlName="IsPublic" [value]="false">
+    </div>
+    <div class=" form-group row align-items-center">
+      <label class="col-3">Ngẫu nhiên: </label>
+      <input type="checkbox" formControlName="RandomQuestion" [value]="false">
+    </div>
+    <div class=" form-group row align-items-center" *ngIf="formAddExam.get('RandomQuestion')?.value">
+      <label class="col-3">Số lượng câu hỏi: </label>
+      <input type="number" formControlName="QuestionCount" class="form-control col-9">
+    </div>
+
+    <div *ngIf="!formAddExam.get('RandomQuestion')?.value">
+      <div class=" form-group row align-items-center">
+        <label class="col-3">Số lượng câu hỏi level 1: </label>
+        <input type="number" formControlName="QuestionCountLevel1" class="form-control col-9">
+      </div>
+      <div class=" form-group row align-items-center">
+        <label class="col-3">Số lượng câu hỏi level 2: </label>
+        <input type="number" formControlName="QuestionCountLevel2" class="form-control col-9">
+      </div>
+      <div class=" form-group row align-items-center">
+        <label class="col-3">Số lượng câu hỏi level 3: </label>
+        <input type="number" formControlName="QuestionCountLevel3" class="form-control col-9">
+      </div>
+      <div class=" form-group row align-items-center">
+        <label class="col-3">Số lượng câu hỏi level 4: </label>
+        <input type="number" formControlName="QuestionCountLevel4" class="form-control col-9">
+      </div>
+      <div class=" form-group row align-items-center">
+        <label class="col-3">Số lượng câu hỏi level 5: </label>
+        <input type="number" formControlName="QuestionCountLevel5" class="form-control col-9">
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-around ">
+      <button class="btn btn-outline-success " type="submit" (click)="CreateExam()">Tạo đề thi </button>
+      <button type="submit" name="back" class="btn btn-outline-danger del" [routerLink]="['/exam/']">Hủy</button>
+    </div>
+    <app-notification></app-notification>
+  </form>
+</div>
+<app-footer></app-footer>

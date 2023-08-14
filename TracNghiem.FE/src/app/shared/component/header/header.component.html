@@ -1,0 +1,75 @@
+<header id="header" class=" " style="position:fixed;box-shadow: 0 4px 4px rgba(0,0,0,.1);">
+  <div class="container-fluid" style="height: 100%;">
+
+    <div class="navbar-header">
+      <div class="">
+        <!-- Logo -->
+        <div class="navbar-brand">
+          <a href="#" class="logo d-flex">
+            <img src="../../assets/img/logo-small.png" alt="logo">
+            <p>BKQuizz</p>
+          </a>
+        </div>
+        <!-- /Logo -->
+
+        <!-- Mobile toggle -->
+        <!-- <button class="navbar-toggle">
+        <span></span>
+      </button> -->
+        <!-- /Mobile toggle -->
+      </div>
+      <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a [routerLink]="['/test/']" class="nav-link active" aria-current="page" href="#">Test</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/exam/']">Exam</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" [routerLink]="['/admin/user/']">USER</a>
+          </li>
+          <li *ngIf="check== false" class="nav-item"><a class="nav-link" [routerLink]="['/auth/login']">Đăng nhập</a></li>
+          <div *ngIf="check== true" class="dropdown ">
+            <button class="dropbtn">Hi, {{userName?.result.data}}</button>
+            <div class="dropdown-content">
+              <a [routerLink]="['/exam/']">Ngân hàng đề thi</a>
+              <a [routerLink]="['/exam/question/question-detail']">Ngân hàng câu hỏi</a>
+              <a (click)="logout1()">Đăng xuất</a>
+            </div>
+          </div> -->
+
+      <!-- Navigation -->
+      <nav id="nav">
+        <ul class="main-menu nav navbar-nav navbar-right">
+          <li><a href="/">Trang chủ</a></li>
+          <!-- <li><a [routerLink]="['/test/']">TEST</a></li> -->
+          <li><a [routerLink]="['/exam']">DE THI</a></li>
+          <li><a [routerLink]="['/admin/all-exam']">QUAN LY</a></li>
+          <li *ngIf="check== false"><a [routerLink]="['/auth/login']">Đăng nhập</a></li>
+
+
+          <li *ngIf="check == true">
+            <button class="btn menu-item-has-children text-uppercase">Hi, {{userName}}
+              <ul class="sub-menu visually-hidden">
+                <li class="px-3 py-3"><a class="menu-item" [routerLink]="['/admin/all-exam']">Ngân hàng đề thi</a></li>
+                <li class="px-3 pb-3"><a class="menu-item " [routerLink]="['/admin/all-question']">Ngân hàng
+                    câu hỏi</a></li>
+                <li class="px-3 pb-3"><a class="menu-item " [routerLink]="['/exam/add-exam']">Thêm đề thi</a></li>
+                <li class="px-3 pb-3"><a class="menu-item " [routerLink]="['/exam/question/add-question']">Thêm câu
+                    hỏi</a></li>
+                <li class="px-3 pb-3"><a class="menu-item " [routerLink]="['/admin/user-detail/' + userId]">Thông
+                    tin cá nhân</a></li>
+                <li class="px-3 pb-3"><a class="menu-item" (click)="logout1()">Đăng xuất</a></li>
+
+              </ul>
+            </button>
+
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+</header>
+<div style="margin-top: 60px"></div>

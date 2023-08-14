@@ -1,0 +1,66 @@
+<div class="tab-pane fade show active my-5 mx-5">
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="question ml-sm-5 pl-sm-5 pt-2">
+        <div *ngIf="result.result.data.questions.typeId==1">
+          <h4 class="pb-2">Chọn câu trả lời đúng nhất</h4>
+          <div class="pb-3 h5">
+            <b class="question-name font-bold">Câu {{result.result.data.questions.numericalOrder}}:</b>
+          </div>
+          <div>
+            <p class="question-content text-smd pb-1"> {{result.result.data.questions.questionContent}}</p>
+          </div>
+
+          <div class="question-item-answer">
+            <div class="answer-head">
+              <span class="font-sm text-secondary ">câu trả lời</span>
+            </div>
+
+            <div *ngFor="let answer of result.result.data.questions.listAnswers"
+              class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+              <label class="options">{{answer.answerContent}}
+                <div *ngIf="usChoosed(answer.id)">
+                  <input type="radio" checked=true value="{{answer.id}}" (change)="chooseOne($event)" name="ans">
+                  <span class="checkmark"></span>
+                </div>
+                <div *ngIf="!usChoosed(answer.id)">
+                  <input type="radio" value="{{answer.id}}" (change)="chooseOne($event)" name="ans">
+                  <span class="checkmark"></span>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="result.result.data.questions.typeId==2">
+          <h2>Chọn các câu trả lời đúng</h2>
+          <div class="question-name font-bold py-2 h5">
+            <b>Câu: {{result.result.data.questions.numericalOrder}} {{result.result.data.questions.questionContent}}</b>
+          </div>
+          <div *ngFor="let answer of result.result.data.questions.listAnswers"
+            class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+            <label class="options">{{answer.answerContent}}
+              <div *ngIf="usChoosed(answer.id)">
+                <input type="checkbox" checked=true value="{{answer.id}}" (change)="chooseChange($event)" name="ans">
+                <span class="checkboxmark"></span>
+              </div>
+              <div *ngIf="!usChoosed(answer.id)">
+                <input type="checkbox" value="{{answer.id}}" (change)="chooseChange($event)" name="ans">
+                <span class="checkboxmark"></span>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="TotalPage > 1" class="center">
+  <app-paging [totalPage]="TotalPage" [currentPage]="urlQuery.pageNumber"
+    (changePage)="ChangePageHandler($event)"></app-paging>
+</div>
+<div>
+  <button class="submitTest" (click)="SubmitTest()">Submit</button>
+</div>
+<div>
+  <app-count-down [time]="TestTime"></app-count-down>
+</div>

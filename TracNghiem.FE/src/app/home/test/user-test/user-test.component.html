@@ -1,0 +1,44 @@
+<app-header></app-header>
+<div style="width: 100%; height: 100%;">
+  <!-- <div style="margin: 0 auto; padding: 60px; font-size: 40px; width: 600px;" *ngIf="result != undefined">
+    <label for=""> Nhập mật khẩu ca thi
+      <input class="form-control" type="text" name="password" placeholder="Mật khẩu" [(ngModel)]="passWord">
+      <button class="btn btn-primary" style="padding: 5px 8px; font-size: 21px;" (click)="CheckPass()">Check</button>
+    </label>
+    <app-notification></app-notification>
+  </div> -->
+  <div *ngIf="result != undefined">
+
+    <div class="container">
+      <div class="content">
+        <fieldset>
+          <ul>
+            <li>
+              <h4>Đề thi:</h4> {{result.result.data.title}}
+            </li>
+            <li>
+              <h4>Tên học sinh:</h4> {{result.result.data.studentName}}
+            </li>
+            <!-- <li>
+              <h4>Thời gian bắt đầu: </h4>{{result.result.data.startAt}}
+            <li>
+              <h4>Thời gian kết thúc:</h4> {{result.result.data.endAt}}
+            </li> -->
+            <li>
+              <h4>Số câu hỏi:</h4> {{result.result.data.questionCount}}
+            </li>
+            <!-- <li>
+              <h4>Giáo viên:</h4> {{result.result.data.createBy}}
+            </li> -->
+            <li>
+              <h4>Thời gian làm bài:</h4> {{result.result.data.time}} phút
+            </li>
+          </ul>
+        </fieldset>
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary start" (click)="doTest()"> Bắt đầu làm bài</button>
+  </div>
+
+</div>
+<app-footer></app-footer>

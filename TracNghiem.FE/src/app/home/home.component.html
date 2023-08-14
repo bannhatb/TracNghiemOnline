@@ -1,0 +1,46 @@
+<app-header></app-header>
+<router-outlet></router-outlet>
+
+<div class="home-container">
+    <section class="section-search">
+        <div class="container">
+            <div class="search-box">
+                <div class="search-box-text">
+                    <h1 class="search-title">
+                        Ngân hàng đề thi trắc nghiệm online, tuyển tập bài giảng, bài học trực tuyến.
+                    </h1>
+                    <p class="search-subtitle">
+                        Hàng ngàn đề thi từ mức độ dễ, trung bình đến khó và cực khó trên
+                        nhiều nhiều lĩnh vực
+                    </p>
+                </div>
+                <div class="form-search">
+                    <form action="/tim-kiem" class="d-flex">
+                        <div role="group" class="input-group input-keyword">
+                            <!-- <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="icon-search-bold"></i>
+                                </div>
+                            </div> -->
+                            <input id="input_keyword" name="keyword" type="text" placeholder="Từ khóa" value="" class="form-control">
+                        </div>
+                        <div class="search-button">
+                            <button type="submit" class="btn btn-primary">
+                                <span>
+                                    <!-- <i class="icon-search"></i> -->
+                                    <span class="ml-2">Tìm</span>
+                                </span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="search-img-right">
+                <img src="https://storage.tracnghiem.vn/public/images/dots-bg.png" alt="dots image" class="dots-bg" style="padding-top:100px;" style="padding-top:100px;">
+                <img src="https://storage.tracnghiem.vn/public/images/search-img.png" alt="search image" class="search-img" style="padding-top:80px;" style="padding-top:80px;">
+            </div>
+        </div>
+    </section>
+</div>
+
+<app-footer></app-footer>

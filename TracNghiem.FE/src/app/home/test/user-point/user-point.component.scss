@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: rgb(255, 255, 255);
+}
+
+.container {
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 50px;
+    margin: 100px auto;
+}
+
+fieldset,
+legend {
+    border: 5px solid rgb(62, 99, 14);
+    padding: 1px 10px;
+    margin: 5px;
+    font-size: 12px;
+}
+
+legend {
+    width: 40%;
+}
+
+h3 {
+    text-transform: uppercase;
+    font-size: 24px;
+    text-align: center;
+    margin: 10px 0;
+    color: blue;
+}
+
+.content {
+    width: 50%;
+    box-shadow: 20px 18px 5px 5px rgba(118, 126, 135, 0.56);
+    -webkit-box-shadow: 20px 18px 5px 5px rgba(118, 126, 135, 0.56);
+    -moz-box-shadow: 20px 18px 5px 5px rgba(118, 126, 135, 0.56);
+    margin: 0 25%;
+}
+
+.content ul {
+    list-style: none;
+    font-size: 18px;
+}
+
+.content ul li {
+    margin: 10px 5px;
+    display: flex;
+}
+
+.content ul li h4 {
+    text-transform: uppercase;
+    margin-right: 10px;
+    color: blue;
+}
+
+.info {
+    padding: 20px 0;
+    margin: 0 25%;
+}
+
+.info p {
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 20px 0;
+    color: blue;
+}
+
+table {
+    width: 50%;
+}
+
+table tr td {
+    border: 2px solid blue;
+    text-align: center;
+    line-height: 32px;
+}
+
+.head {
+    font-weight: 700;
+}
+
+a {
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 700;
+    color: rgb(61, 60, 60);
+}
+
+a:hover {
+    color: red;
+    cursor: pointer;
+}
+
+button {
+    width: 10em;
+    height: 2em;
+}

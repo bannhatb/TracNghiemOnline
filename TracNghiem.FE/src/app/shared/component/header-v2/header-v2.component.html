@@ -1,0 +1,28 @@
+<header id="header" class="transparent-nav" style="background-color: #2c2f30;">
+    <div class="container" style="height: 100%;">
+
+        <div class="navbar-header">
+            <div class="">
+                <!-- Logo -->
+                <div class="navbar-brand">
+                    <a class="logo" href="#">
+                        <img src="../../assets/img/logo-small.png" alt="logo">
+                    </a>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <nav id="nav">
+                <ul class="main-menu nav navbar-nav navbar-right">
+                    <li><a href="/">Trang chủ</a></li>
+                    <li><a [routerLink]="['/test/']">Bài thi</a></li>
+                    <li><a [routerLink]="['/exam/']">Đề thi</a></li>
+                    <li><a [routerLink]="['/admin/user/']">Admin</a></li>
+                    <li *ngIf="check== false"><a [routerLink]="['/auth/login']">Đăng nhập</a></li>
+                    <li *ngIf="check== true"><a (click)="logout1()">Đăng xuất</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+<div style="margin-bottom: 80px;"></div>

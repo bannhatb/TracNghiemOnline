@@ -1,0 +1,229 @@
+<app-header></app-header>
+<html lang="en">
+
+<body>
+  <div>
+    <div class="main-face">
+      <div class="ava-block  ">
+        <div>
+          <img class="pt-3" src="https://cdn3.iconfinder.com/data/icons/essential-rounded/64/Rounded-31-512.png"
+            alt="avatar">
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card-body px-20">
+      <h4 class="fw-600 text-grey-700">
+        Thông tin tài khoản
+      </h4>
+
+      <div class="w-100 ">
+        <div class="row">
+          <div class="col-lg-6  ">
+            <div class="form-group">
+              <label class="mont-font fw-600 font-xsss text-grey-700">
+                Username:
+              </label>
+
+              <input class="form-control" type="text" name="" value={{data.userName}}>
+            </div>
+          </div>
+
+
+          <div class="col-lg-6  ">
+            <div class="form-group">
+              <label class="mont-font fw-600 font-xsss text-grey-700">
+                Class:
+              </label>
+
+              <input class="form-control" type="text" name="" value={{data.className}} readonly>
+            </div>
+
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-lg-6  ">
+            <div class="form-group">
+              <label class="mont-font fw-600 font-xsss text-grey-700">
+                FirstName:
+              </label>
+
+              <input class="form-control" type="text" name="" value={{data.firstName}}>
+            </div>
+          </div>
+
+
+          <div class="col-lg-6  ">
+            <div class="form-group">
+              <label class="mont-font fw-600 font-xsss text-grey-700">
+                LastName:
+              </label>
+
+              <input class="form-control" type="text" name="" value={{data.lastName}}>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-lg-6  ">
+            <div class="form-group">
+              <label class="mont-font fw-600 font-xsss text-grey-700">
+                Birthday:
+              </label>
+
+              <input class="form-control" type="date" name="" value={{data.dateOfBirth}}>
+            </div>
+          </div>
+
+
+          <div class="col-lg-6  ">
+            <div class="form-group">
+              <label class="mont-font fw-600 font-xsss text-grey-700">
+                Gender:
+              </label>
+
+              <input class="form-control" type="text" name="" value={{data.gender}}>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6  ">
+            <div class="form-group">
+              <label class="mont-font fw-600 font-xsss text-grey-700">
+                Email:
+              </label>
+
+              <input class="form-control" type="text" name="" value={{data.email}} readonly>
+            </div>
+          </div>
+
+
+          <div class="col-lg-6  ">
+            <div class="form-group">
+              <label class="mont-font fw-600 font-xsss text-grey-700">
+                Role:
+              </label>
+
+
+              <ul class="list-inline text-start p-2 rounded border" style="background-color:#e9ecef;">
+                <li *ngFor="let role of data.listRoles" class="list-inline-item ">
+                  {{ role.roleName }}
+                </li>
+              </ul>
+
+
+
+
+
+            </div>
+          </div>
+        </div>
+
+
+        <!-- <div class="row">
+          <div class="col-lg-6  ">
+            <div class="form-group">
+              <label class="mont-font fw-600 font-xsss text-grey-700">
+                Status:
+              </label>
+
+              <input class="form-control" type="text" name="" value={{data.isBlock}} readonly>
+            </div>
+          </div>
+
+
+
+        </div> -->
+
+
+
+
+      </div>
+
+    </div>
+    <button type="submit" class="btn btn-outline-primary ml-4">Lưu</button>
+
+  </div>
+  <div *ngIf="dem2 > 0" class="p-20">
+    <h4 class="fw-600 text-grey-700">Danh sách đề thi đã tạo</h4>
+    <table class="table-bordered table-hover px-10" style="font-weight:400">
+      <tr>
+        <td>Mã đề thi</td>
+        <td>Tiêu đề</td>
+        <td>Trạng thái</td>
+        <td>Số câu hỏi</td>
+        <td>thời gian làm bài</td>
+      </tr>
+      <tr *ngFor="let exam of data.listExams">
+        <td>{{exam.id}}</td>
+        <td>{{exam.title}}</td>
+        <td>{{exam.isPublic}}</td>
+        <td>{{exam.questionCount}}</td>
+        <td>{{exam.time}} phút</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- <div *ngIf="dem1 > 0" class="p-20">
+    <h4 class="fw-600 text-grey-700">Danh sách cuộc thi đã tạo</h4>
+    <table class="table-bordered table-hover" style="font-weight:400">
+      <thead>
+        <td>Mã test</td>
+        <td>Tiêu đề</td>
+        <td>Thời gian bắt đầu</td>
+        <td>Thời gian kết thúc</td>
+        <td>Số câu hỏi</td>
+        <td>Thời gian làm bài</td>
+        <td>Mật khẩu ca thi</td>
+        <td>Số người làm</td>
+      </thead>
+      <tr *ngFor="let test of data.listTestCreate">
+        <td>{{test.testId}}</td>
+        <td>{{test.title}}</td>
+        <td>{{test.startAt}}</td>
+        <td>{{test.endAt}}</td>
+        <td>{{test.questionCount}}</td>
+        <td>{{test.time}} phút</td>
+        <td>{{test.password}}</td>
+        <td>{{test.countDo}}</td>
+      </tr>
+    </table>
+  </div> -->
+
+  <div *ngIf="dem > 0" class="p-20">
+    <h4 class="fw-600 text-grey-700">Danh sách đề thi đã làm</h4>
+    <table class="table-bordered table-hover" style="font-weight:400;">
+      <thead>
+        <!-- <td>Mã đề</td> -->
+        <td>Tiêu đề</td>
+        <td>Giáo viên</td>
+        <!-- <td>Thời gian bắt đầu</td>
+        <td>Thời gian kết thúc</td> -->
+        <td>Số câu hỏi</td>
+        <td>Thời gian làm bài</td>
+        <!-- <td>Mật khẩu ca thi</td> -->
+        <td>Điểm</td>
+      </thead>
+      <tr *ngFor="let test of data.listTestDid">
+        <!-- <td>{{test.testId}}</td> -->
+        <td>{{test.title}}</td>
+        <td>{{test.createBy}}</td>
+        <!-- <td>{{test.startAt}}</td>
+        <td>{{test.endAt}}</td> -->
+        <td>{{test.questionCount}}</td>
+        <td>{{test.time}} phút</td>
+        <!-- <td>{{test.password}}</td> -->
+        <td>{{test.point}}</td>
+      </tr>
+    </table>
+  </div>
+</body>
+
+</html>
+
+<app-footer></app-footer>

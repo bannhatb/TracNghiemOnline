@@ -1,0 +1,48 @@
+table {
+  font-weight: 700;
+  text-align: center;
+  margin: auto;
+}
+
+table tr {
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px 0;
+}
+
+table tr td {
+  border: 1px solid rgb(0, 0, 0);
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px 25px;
+  font-size: 17px;
+}
+
+a {
+  font-style: revert;
+  margin: 8px -10px 11px -15px;
+  padding: 2px 19px;
+  font-size: 20px;
+}
+
+thead td {
+  border: 1px solid rgb(0, 0, 0);
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 17px;
+}
+
+.main {
+  width: 600px;
+  padding: 30px;
+  margin: 30px auto 0;
+  border: 2px solid red;
+  box-shadow: 13px 15px 1px 1px rgba(204, 191, 191, 0.75);
+  -webkit-box-shadow: 13px 15px 1px 1px rgba(204, 191, 191, 0.75);
+  -moz-box-shadow: 13px 15px 1px 1px rgba(204, 191, 191, 0.75);
+  border-radius: 4px;
+  background-color: #e6e7f1;
+  font-weight: 700;
+}

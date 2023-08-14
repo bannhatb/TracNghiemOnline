@@ -1,0 +1,33 @@
+<div class="main">
+    <h3>Kết quả cuộc thi</h3>
+    <p>Số người làm: {{data.total}}</p>
+    <app-search [textSearch]="urlQuery.keyword" (search)="GetTestAnalysisResult($event)"></app-search>
+    <label for="">
+      Lớp: ...
+      <select #selectClass [(ngModel)]="classId" (ngModelChange)="ChangeClass($event)">
+        <option value="-1">All</option>
+        <option *ngFor="let cl of classData" value="{{cl.id}}">{{cl.name}}</option>
+      </select>
+    </label>
+
+    <table class="table-bordered table-hover">
+        <thead>
+            <td>Mã user</td>
+            <td>UserName</td>
+            <td>Điểm</td>
+            <td>Lớp</td>
+        </thead>
+        <tr *ngFor="let user of data.items.listResult">
+            <td>{{user.userId}}</td>
+            <td>{{user.userName}}</td>
+            <td>{{user.point}}</td>
+            <td>{{user.className}}</td>
+        </tr>
+    </table>
+    <br>
+
+    <div *ngIf="TotalPage > 1">
+        <app-paging [totalPage]="TotalPage" [currentPage]="urlQuery.pageNumber" (changePage)="ChangePageHandler($event)"></app-paging>
+    </div>
+</div>
+<app-footer></app-footer>

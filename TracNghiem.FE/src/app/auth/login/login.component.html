@@ -1,0 +1,82 @@
+<div class="bg-image bg-parallax overlay" style="background-image:url(../assets/img/background.jpg)"></div>
+<app-header></app-header>
+<!-- <div style="background-image:url(../../../assets/img/bgsignup.jpg)"
+class = "bg-image "
+> -->
+<!-- <div>
+    <h1>
+      Đăng nhập
+    </h1>
+  </div>
+  <div class="login">
+    <div class="form-login">
+      <div>
+        <div>
+          <form (ngSubmit)="onSubmit()">
+            <input type="text" [(ngModel)]="username" name="username" placeholder="Username">
+            <input type="password" [(ngModel)]="password" name="password" placeholder="Password">
+            <button type="submit">Login</button>
+            <a routerLink="/auth/register">
+              <p style="margin-top: 12px; font-size: 20px;">Register</p>
+            </a>
+          </form>
+        </div>
+        <div>
+          <p style="color: aqua;">Fast Login With Your Favourite Social Profile</p>
+        </div>
+        <div>
+          <div>
+            <div class="icon-contact">
+              <div class="face"><a href="#"><i class="fab fa-facebook-f" style="color: #FFF;"></i></a></div>
+              <div class="yt"><a href="#"><i class="fab fa-youtube" style="color: #FFF;"></i></a></div>
+              <div class="tw"><a href="#"><i class="fab fa-twitter" style="color: #FFF;"></i></a></div>
+              <div class="gg"><a href="#"><i class="fab fa-google-plus-g" style="color: #FFF;"></i></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+<div class="container mt-10">
+  <div class="row text-light">
+    <div class="col-4"></div>
+    <div class="col-4 bg-dark rounded shadow-lg">
+      <form (ngSubmit)="onSubmit()" class="mt-4">
+        <h2 class="text-center">Đăng nhập</h2>
+        <div class="form-group">
+          <label>User Name:</label>
+          <input type="text" [(ngModel)]="username" name="username" placeholder="Username">
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" [(ngModel)]="password" name="password" placeholder="Password">
+        </div>
+        <div class="d-flex justify-content-between">
+          <button type="submit" class="btn btn-primary">Đăng nhập</button>
+          <a routerLink="/auth/register">
+            Đăng ký
+          </a>
+        </div>
+        <div class="mt-4">
+          <p style="color: rgb(255, 255, 255);">Fast Login With Your Favourite Social Profile</p>
+        </div>
+        <div>
+          <div>
+            <div class="icon-contact mb-2">
+              <div class="face rounded m-2"><a href="#"><i class="fab fa-facebook-f" style="color: #FFF;"></i></a></div>
+              <div class="tw rounded m-2"><a href="#"><i class="fab fa-twitter" style="color: #FFF;"></i></a></div>
+              <div class="gg rounded m-2"><a href="#"><i class="fab fa-google-plus-g" style="color: #FFF;"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-4"></div>
+  </div>
+</div>
+<!-- </div> -->
+<app-footer></app-footer>
+
+<app-notification></app-notification>

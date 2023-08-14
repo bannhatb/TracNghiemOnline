@@ -1,0 +1,87 @@
+<app-header></app-header>
+<div class="container">
+  <div class="add">
+    <div class="bg-gradient-blue mx-5">
+      <div class=" d-flex  justify-content-between">
+        <h2>Danh sách đề thi</h2>
+        <app-search [textSearch]="urlQuery.keyword" (search)="GetAllExamShow($event)"></app-search>
+      </div>
+      <div class=" form-group row align-items-center">
+        <label class="col-3" for=""> Loại đề thi: </label>
+        <select name="Categories" (change)="newCategory($event)" class="form-control col-9">
+          <option value="0">All</option>
+          <option *ngFor="let ca of listCategory?.result.items" [value]="ca.id">{{ca.categoryName}}</option>
+        </select>
+      </div>
+    </div>
+    <!-- <div class="add mx-5 ">
+      <a [routerLink]="['/exam/add-exam/']" routerLinkActive="router-link-active" class="btn btn-success"
+        style="margin-left: 5px;">
+        Thêm đề thi
+      </a>
+      <a class="btn btn-outline-primary" [routerLink]="['/exam/test-create/']" style="margin-left: 5px;">Danh sách cuộc
+        thi bạn đã tạo</a>
+    </div> -->
+    <div *ngIf="Total == 0">
+      <p colspan="3">Hiện chưa có bài thi nào</p>
+    </div>
+    <div *ngIf="Total > 0" class="d-flex row flex-wrap justify-content-around">
+      <div *ngFor="let item of ListExam.items">
+        <div class="card shadow-lg mb-4" style="width:400px">
+          <img class="card-img-top" src="https://storage.tracnghiem.vn/public/trac-nghiem-ngoai-ngu.jpg"
+            alt="Card image" style="width:100%">
+          <div class="card-body">
+            <h4 class="card-title">{{item.title}}</h4>
+            <div class="card-text d-flex justify-content-between">
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-card-text" viewBox="0 0 16 16">
+                  <path
+                    d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
+                  <path
+                    d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z" />
+                </svg>
+                {{item.questionCount}} câu hỏi
+              </div>
+              <div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-alarm" viewBox="0 0 16 16">
+                  <path
+                    d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
+                  <path
+                    d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
+                </svg> {{item.time}} phút</div>
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-person-circle" viewBox="0 0 16 16">
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                  <path fill-rule="evenodd"
+                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                </svg>
+                {{item.createBy}}
+              </div>
+            </div>
+            <div class="card-text d-flex justify-content-around border-top mt-4 flex-wrap">
+              <a [routerLink]="['/exam/exam-detail/'+item.id]" routerLinkActive="router-link-active"
+                class="btn btn-outline-warning">
+                Danh sách
+              </a>
+              <a [routerLink]="['/exam/create-test/'+item.id]" routerLinkActive="router-link-active"
+                class="btn btn-outline-secondary">
+                Bắt đầu làm bài
+              </a>
+              <!-- <button (click)="deleteExam(item.id)" class="btn btn-outline-danger del">
+                Xóa đề thi
+              </button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="TotalPage > 1">
+      <app-paging [totalPage]="TotalPage" [currentPage]="urlQuery.pageNumber"
+        (changePage)="ChangePageHandler($event)"></app-paging>
+    </div>
+
+  </div>
+  <app-notification></app-notification>
+  <app-footer></app-footer>

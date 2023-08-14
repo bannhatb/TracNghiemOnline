@@ -1,0 +1,49 @@
+<div>
+    <div *ngIf="total == 0">
+        <h2 style="font-size: 30px;">Đề thi rỗng</h2>
+    </div>
+    <div *ngIf="total > 0">
+        <app-search [textSearch]="urlQuery.keyword" (search)="GetListQuestionOfExam($event)"></app-search>
+        <div *ngFor="let question of ListQuestion; let i = index">
+            <div class="question ml-sm-5 pl-sm-5 pt-2 main">
+                <div *ngIf="question.typeId==1">
+                    <div class="py-2 h5"><b>Câu {{(urlQuery.pageNumber-1)*urlQuery.pageSize + i+1}}: {{question.questionContent}}</b></div>
+                    <div *ngFor="let answer of question.listAnswers" class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                        <div style="display: inline-block;">
+                            <div *ngIf="answer.rightAnswer">
+                                <input type="radio" checked=true value="{{answer.id}}" [name]="question.id"> <span class="checkmark"></span>
+                            </div>
+                            <div *ngIf="!answer.rightAnswer">
+                                <input type="radio" value="{{answer.id}}" [name]="question.id"> <span class="checkmark"></span>
+                            </div>
+                        </div>
+                        <label class="options">{{answer.answerContent}}</label>
+                    </div>
+                </div>
+                <div *ngIf="question.typeId==2">
+                    <div class="py-2 h5"><b>Câu: {{(urlQuery.pageNumber-1)*urlQuery.pageSize + i+1}} {{question.questionContent}}</b></div>
+                    <div *ngFor="let answer of question.listAnswers" class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+
+                        <div style="display: inline-block;">
+                            <div *ngIf="answer.rightAnswer">
+                                <input type="checkbox" checked=true value="{{answer.id}}" [name]="question.id"> <span class="checkboxmark"></span>
+                            </div>
+                            <div *ngIf="!answer.rightAnswer">
+                                <input type="checkbox" value="{{answer.id}}" [name]="question.id"> <span class="checkboxmark"></span>
+                            </div>
+                        </div>
+                        <label class="options">{{answer.answerContent}}
+
+                </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin: 10px 0 0 600px;" *ngIf="TotalPage > 1">
+            <app-paging [totalPage]="TotalPage" [currentPage]="urlQuery.pageNumber" (changePage)="ChangePageHandler($event)"></app-paging>
+        </div>
+    </div>
+    <br>
+    <a [routerLink]="['/admin/all-exam']" class="btn btn-danger" style="margin: 0 0 0 50px;">Back</a>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,61 @@
+<app-header></app-header>
+<h2 class="text-center mt-6 text-uppercase">Thêm câu hỏi</h2>
+<div class="main">
+  <form [formGroup]="formAddQuestion">
+    <div class="form-group">
+      <div formGroupName="question">
+        <div class="form-group row align-items-center">
+          <label class="col-3"> Nội dung câu hỏi
+          </label>
+          <input type="text" formControlName="questionContent" class="form-control col-9">
+        </div>
+        <div class="form-group row align-items-center">
+          <label class="col-3"> Mô tả </label>
+          <input type="text" formControlName="explaint" class="form-control col-9">
+        </div>
+        <div class=" form-group row align-items-center">
+          <label class="col-3" for=""> Độ khó: </label>
+          <select name="Levels" formControlName="levelID" class="form-control col-9">
+            <option *ngFor="let ca of listLevels?.items" [value]="ca.id">{{ca.levelName}}</option>
+          </select>
+        </div>
+        <div class=" form-group row align-items-center">
+          <label class="col-3" for=""> Loại đề thi: </label>
+          <select name="Categories" formControlName="Categories" (change)="newCategory($event)"
+            class="form-control col-9">
+            <option *ngFor="let ca of listCategory?.result.items" [value]="ca.id">{{ca.categoryName}}</option>
+          </select>
+        </div>
+      </div>
+      <label for=""> Danh sách câu trả lời </label>
+    </div>
+    <div *ngIf="answers">
+      <div formArrayName="answers">
+        <div *ngFor="let answerGroup of answers.controls; let i = index" [formGroupName]="i">
+          <div class="d-flex form-group ">
+            <input type="text" formControlName="answerContent" class="form-control ">
+            <!-- <div *ngIf="answerGroup.value.rightAnswer">
+              <input type="checkbox" formControlName="rightAnswer" name="rightAnswer" class="form-control ml-2" checked=true>
+            </div> -->
+            <!-- <div *ngIf="!answerGroup.value.rightAnswer"> -->
+            <div>
+              <input type="checkbox" formControlName="rightAnswer" name="rightAnswer" class="form-control ml-2">
+            </div>
+            <!-- </div> -->
+            <!-- <input  type="radio" formControlName="rightAnswer" > -->
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-around">
+        <button (click)="addInput()" class="btn btn-primary center">Thêm câu trả lời</button>
+      </div>
+    </div>
+    <div class="form-group d-flex mt-4 justify-content-around border-t">
+
+      <button type="submit" (click)="addQuestion()" [routerLink]="['/exam/question/question-detail']"
+        class="btn btn-outline-success">Thêm câu hỏi</button>
+      <button [routerLink]="['/exam/question/question-detail']" class="btn btn-outline-danger">Quay lại</button>
+    </div>
+  </form>
+</div>
+<app-footer></app-footer>

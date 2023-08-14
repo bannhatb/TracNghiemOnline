@@ -1,0 +1,36 @@
+<div class="row pt-2 border-top ">
+  <div class="col-10 ">
+    <div *ngIf="question.result.typeId==1">
+      <div class="py-2 h5"><b>Noi dung: {{question.result.questionContent}}</b></div>
+      <div *ngFor="let answer of question.result.listAnswers" class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+        <div style="display: inline-block;">
+          <div *ngIf="answer.rightAnswer">
+            <input type="radio" checked="true" value="{{answer.id}}" [name]="question.result.id"> <span
+              class="checkmark"></span>
+          </div>
+          <div *ngIf="!answer.rightAnswer">
+            <input type="radio" value="{{answer.id}}" [name]="question.result.id"> <span class="checkmark"></span>
+          </div>
+        </div>
+        <label class="options">{{answer.answerContent}}</label>
+      </div>
+    </div>
+    <div *ngIf="question.result.typeId==2">
+      <div *ngFor="let answer of question.result.listAnswers" class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+
+        <div style="display: inline-block;">
+          <div *ngIf="answer.rightAnswer">
+            <input type="checkbox" checked=true value="{{answer.id}}" [name]="question.result.id"> <span
+              class="checkboxmark"></span>
+          </div>
+          <div *ngIf="!answer.rightAnswer">
+            <input type="checkbox" value="{{answer.id}}" [name]="question.result.id"> <span class="checkboxmark"></span>
+          </div>
+        </div>
+        <label class="options">{{answer.answerContent}}
+
+        </label>
+      </div>
+    </div>
+  </div>
+</div>

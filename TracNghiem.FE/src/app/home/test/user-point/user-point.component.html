@@ -1,0 +1,53 @@
+<app-header></app-header>
+<app-notification></app-notification>
+
+<div>
+    <div class="container">
+        <div class="content">
+            <fieldset>
+                <legend>
+                    <h3>Kết quả thi</h3>
+                </legend>
+                <ul>
+                    <li>
+                        <h4>Đề thi:</h4> {{pointData.result.data.test.title}}
+                    </li>
+                    <li>
+                        <h4>Thời gian bắt đầu: </h4> {{pointData.result.data.test.startAt}}
+                    </li>
+                    <li>
+                        <h4>Thời gian kết thúc:</h4> {{pointData.result.data.test.endAt}}
+                    </li>
+                    <li>
+                        <h4>Số câu hỏi:</h4> {{pointData.result.data.test.questionCount}}
+                    </li>
+                    <li>
+                        <h4>Giáo viên:</h4> {{pointData.result.data.test.createBy}}
+                    </li>
+                    <li>
+                        <h4>Thời gian làm bài:</h4> {{pointData.result.data.test.time}} phút
+                    </li>
+                </ul>
+            </fieldset>
+        </div>
+
+        <div class="info">
+            <p>Thông tin sinh viên:</p>
+            <table>
+                <tr class="head">
+                    <td>Lớp</td>
+                    <td>Tên</td>
+                    <td>Điểm</td>
+                </tr>
+                <tr>
+                    <td>{{pointData.result.data.userPoint.className}}</td>
+                    <td>{{pointData.result.data.userPoint.userName}}</td>
+                    <td>{{pointData.result.data.userPoint.point}}/10</td>
+                </tr>
+            </table>
+        </div>
+        <button [routerLink]="['/test']" class="btn btn-info" style="margin: 0 25%;
+        ">Thoát</button>
+    </div>
+
+    <app-footer></app-footer>

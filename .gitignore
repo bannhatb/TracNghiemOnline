@@ -267,3 +267,6 @@ pub/
 logs/*
 failures.txt
 /TracNghiem.API/logs/failures.txt
+
+/bin
+/obj

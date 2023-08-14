@@ -1,0 +1,53 @@
+<app-search [textSearch]="urlQuery.keyword" (search)="GetUser($event)"></app-search>
+<h1>Danh sách user            <a href="#" class="btn btn-outline-success"><i class="fas fa-plus"></i></a></h1>
+<table class="table table-bordered" style="font-weight:700">
+    <thead>
+        <td>Mã User</td>
+        <td>UserName</td>
+        <td>Email</td>
+        <td>Lớp</td>
+        <td>Roles</td>
+        <td>Trạng thái</td>
+        <td>Chi tiết</td>
+        <td>Phân quyền</td>
+    </thead>
+    <tr *ngFor="let user of data?.items">
+      <td>{{user.userId}}</td>
+      <td>{{user.userName}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.className}}</td>
+      <td>
+        <div *ngFor="let role of user.listRoles">
+          <p>{{role.roleName}}</p>
+        </div>
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="changeStatus(user.userId)" *ngIf="!user.isBlock">Block</button>
+        <button class="btn btn-info" (click)="changeStatus(user.userId)" *ngIf="user.isBlock">UnLock</button>
+      </td>
+      <td><a class="btn btn-primary" [routerLink]="['/admin/user-detail/'+ user.userId]" ><i class="fas fa-info-circle"></i></a></td>
+      <td>
+        <div>
+          <button class="btn btn-primary" *ngIf="checkRole(user)==2" (click)="AuthenTeacher(user.userId)">Phân quyền teacher</button>
+          <button class="btn btn-danger" *ngIf="checkRole(user)==2" (click)="AuthenAdmin(user.userId)">Hủy quyền Admin</button>
+        </div>
+        <div>
+          <button class="btn btn-info" *ngIf="checkRole(user)==3" (click)="AuthenAdmin(user.userId)">Phân quyền admin</button>
+          <button class="btn btn-danger" *ngIf="checkRole(user)==3" (click)="AuthenTeacher(user.userId)">Hủy quyền teacher</button>
+        </div>
+        <div>
+          <button class="btn btn-danger" *ngIf="checkRole(user)==1" (click)="AuthenTeacher(user.userId)">Hủy quyền teacher</button>
+          <button class="btn btn-danger" *ngIf="checkRole(user)==1" (click)="AuthenAdmin(user.userId)">Hủy quyền Admin</button>
+        </div>
+
+        <div *ngIf="checkRole(user)==0">
+          <button class="btn btn-primary" (click)="AuthenTeacher(user.userId)">Phân quyền teacher</button>
+          <button class="btn btn-info" (click)="AuthenAdmin(user.userId)">Phân quyền admin</button>
+        </div>
+      </td>
+    </tr>
+</table>
+<div *ngIf="TotalPage > 1">
+  <app-paging [totalPage]="TotalPage" [currentPage]="urlQuery.pageNumber" (changePage)="ChangePageHandler($event)"></app-paging>
+</div>
+<app-notification></app-notification>

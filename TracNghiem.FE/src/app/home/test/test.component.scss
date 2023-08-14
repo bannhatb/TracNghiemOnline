@@ -1,0 +1,48 @@
+table {
+    width: 100%;
+}
+
+tr td {
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+table {
+    font-weight: 700;
+    text-align: center;
+    margin: auto;
+}
+
+table tr {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px 0;
+}
+
+table tr td {
+    border: 1px solid rgb(0, 0, 0);
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 25px;
+    font-size: 15px;
+}
+
+a {
+    font-style: revert;
+    font-size: 15px;
+    margin: 5px -12px;
+}
+
+.btn-primary {
+    margin-right: 20px;
+    margin-left: -20px;
+}
+
+.btn-info {
+    margin-right: -25px;
+}
+
+.bg-gradient-blue{
+    margin-bottom: 20px;
+}

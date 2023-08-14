@@ -1,0 +1,52 @@
+<app-header></app-header>
+<div class="bg-image bg-parallax overlay" style="background-image:url(../assets/img/background.jpg);
+background-attachment: fixed;
+  background-size: cover;"></div>
+
+
+<div class="container mt-10 mb-50">
+  <div class="row text-light">
+    <div class="col-4"></div>
+    <div class="col-4 bg-dark rounded shadow-lg">
+      <form [formGroup]="formRegister" autocomplete="off" class="mt-4">
+        <h2 class="text-center">Đăng kí tài khoản</h2>
+        <div class="form-group">
+          <input type="text" autocomplete="off" name="userName" formControlName="userName" placeholder="Username">
+          <input type="email" autocomplete="off" name="email" formControlName="email" placeholder="mail@example.com">
+          <input type="password" autocomplete="off" name="password" formControlName="password" placeholder="Password">
+          <input type="password" autocomplete="off" name="confirmPassword" formControlName="confirmPassword"
+            placeholder="Confirm Password">
+          <div style="margin: 10px auto 0;">
+            <label style="margin-right: 10px; color: #f5e3e3; font-size: 25px;">Lớp: </label>
+            <select name="classId" class="classSelect" formControlName="classId" style="width: 120px; font-size: 25px;">
+              <option *ngFor="let cl of classData" value="{{cl.id}}">{{cl.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between">
+          <button type="submit" class="btn btn-primary">Tạo tài khoản</button>
+          <a routerLink="/auth/login">
+            Đăng nhập
+          </a>
+        </div>
+        <div class="mt-4">
+          <p style="color: rgb(255, 255, 255);">Fast Login With Your Favourite Social Profile</p>
+        </div>
+        <div>
+          <div>
+            <div class="icon-contact mb-2">
+              <div class="face rounded m-2"><a href="#"><i class="fab fa-facebook-f" style="color: #FFF;"></i></a></div>
+              <div class="tw rounded m-2"><a href="#"><i class="fab fa-twitter" style="color: #FFF;"></i></a></div>
+              <div class="gg rounded m-2"><a href="#"><i class="fab fa-google-plus-g" style="color: #FFF;"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-4"></div>
+  </div>
+</div>
+<app-footer></app-footer>
+
+<app-notification></app-notification>

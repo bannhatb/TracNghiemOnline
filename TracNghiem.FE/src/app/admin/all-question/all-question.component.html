@@ -1,0 +1,104 @@
+<h2>Danh sách câu hỏi</h2>
+<!-- <app-search [textSearch]="urlQuery.keyword" (search)="GetAllExamAdmin($event)"></app-search> -->
+<div *ngIf="checkRole(roles)==1">
+  <table class="table-bordered table-hover" style="font-weight: 500;">
+    <thead>
+      <tr>
+        <td>Nội dung câu hỏi</td>
+        <td>Giải thích</td>
+        <td>Độ khó</td>
+        <td>Tác giả</td>
+        <td>Chi tiết</td>
+        <td>Sửa</td>
+        <td>Xóa</td>
+      </tr>
+    </thead>
+    <tbody *ngIf="Total == 0">
+      <tr>
+        <td colspan="3">Hiện chưa có bài thi nào</td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="Total >0">
+      <tr *ngFor="let item of listQuestion.result?.items">
+        <td>{{item.questionContent}}</td>
+        <td>{{item.explaint}}</td>
+        <td>{{item.levelId}}</td>
+        <td>{{item.userCreate}}</td>
+        <td>
+          <a [routerLink]="['/exam/question/question-detail/'+item.id]" routerLinkActive="router-link-active"
+            class="btn btn-outline-primary">
+            Chi tiết
+          </a>
+        </td>
+        <td>
+          <a [routerLink]="['/exam/question/update-question/'+item.id,{admin: true}]"
+            routerLinkActive="router-link-active" class="btn btn-outline-primary">
+            Sửa câu hỏi
+          </a>
+        </td>
+        <td>
+          <button class="btn btn-outline-danger" (click)="deleteQuestion(item.id)">
+            Xóa câu hỏi
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="checkRole(roles)==2">
+  <table class="table-bordered table-hover" style="font-weight: 500;">
+    <thead>
+      <tr>
+        <td>Nội dung câu hỏi</td>
+        <td>Giải thích</td>
+        <td>Độ khó</td>
+        <td>Tác giả</td>
+        <td>Chi tiết</td>
+        <td>Sửa</td>
+        <td>Xóa</td>
+      </tr>
+    </thead>
+    <tbody *ngIf="Total == 0">
+      <tr>
+        <td colspan="3">Hiện chưa có bài thi nào</td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="Total >0">
+      <tr *ngFor="let item of listQuestionTeacher.result?.items">
+        <td>{{item.questionContent}}</td>
+        <td>{{item.explaint}}</td>
+        <td>{{item.levelId}}</td>
+        <td>{{item.userCreate}}</td>
+        <td>
+          <a [routerLink]="['/exam/question/question-detail/'+item.id]" routerLinkActive="router-link-active"
+            class="btn btn-outline-primary">
+            Chi tiết
+          </a>
+        </td>
+        <td>
+          <a [routerLink]="['/exam/question/update-question/'+item.id,{admin: true}]"
+            routerLinkActive="router-link-active" class="btn btn-outline-primary">
+            Sửa câu hỏi
+          </a>
+        </td>
+        <td>
+          <button class="btn btn-outline-danger" (click)="deleteQuestion(item.id)">
+            Xóa câu hỏi
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- <br>
+<button [routerLink]="['/question/add-question/']" routerLinkActive="router-link-active"
+  class="btn btn-outline-primary">
+  Thêm câu hỏi
+</button> -->
+
+
+
+<app-notification></app-notification>
+<app-footer></app-footer>

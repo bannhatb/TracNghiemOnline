@@ -1,0 +1,117 @@
+<h2>Danh sách bài thi</h2>
+<div *ngIf="checkRole(roles)==1">
+  <app-search [textSearch]="urlQuery.keyword" (search)="GetAllExamAdmin($event)"></app-search>
+  <table class="table-bordered table-hover" style="font-weight: 500;">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>Tiêu đề</td>
+        <td>Tác giả</td>
+        <td>Công khai</td>
+        <td>thời gian làm bài</td>
+        <td>Số lượng câu hỏi</td>
+        <td>Câu hỏi</td>
+        <td>Xóa</td>
+        <td>Bài thi</td>
+      </tr>
+    </thead>
+    <tbody *ngIf="Total == 0">
+      <tr>
+        <td colspan="3">Hiện chưa có bài thi nào</td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="Total >0">
+      <tr *ngFor="let item of ListExamAdmin.result?.items">
+        <td>{{item.id}}</td>
+        <td>{{item.title}}</td>
+        <td>{{item.createBy}}</td>
+        <td>{{item.isPublic}}</td>
+        <td>{{item.time}}</td>
+        <td>{{item.questionCount}}</td>
+        <td>
+          <a [routerLink]="['/admin/question-exam/'+item.id]" routerLinkActive="router-link-active"
+            class="btn btn-outline-warning">
+            Danh sách
+          </a>
+        </td>
+        <td>
+          <button (click)="deleteExam(item.id)" class="btn btn-outline-danger">
+            Xóa đề thi
+          </button>
+        </td>
+        <td>
+          <a [routerLink]="['/admin/test-exam/'+item.id]" routerLinkActive="router-link-active"
+            class="btn btn-outline-primary">
+            Danh sách
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="TotalPage > 1">
+    <app-paging [totalPage]="TotalPage" [currentPage]="urlQuery.pageNumber"
+      (changePage)="ChangePageHandler($event)"></app-paging>
+  </div>
+</div>
+
+<div *ngIf="checkRole(roles)==2">
+  <app-search [textSearch]="urlQuery.keyword" (search)="GetAllExamTeacher($event)"></app-search>
+  <table class="table-bordered table-hover" style="font-weight: 500;">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>Tiêu đề</td>
+        <td>Tác giả</td>
+        <td>Công khai</td>
+        <td>thời gian làm bài</td>
+        <td>Số lượng câu hỏi</td>
+        <td>Câu hỏi</td>
+        <td>Xóa</td>
+        <td>Bài thi</td>
+      </tr>
+    </thead>
+    <tbody *ngIf="Total == 0">
+      <tr>
+        <td colspan="3">Hiện chưa có bài thi nào</td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="Total >0">
+      <tr *ngFor="let item of ListExamTeacher.result?.items">
+        <td>{{item.id}}</td>
+        <td>{{item.title}}</td>
+        <td>{{item.createBy}}</td>
+        <td>{{item.isPublic}}</td>
+        <td>{{item.time}}</td>
+        <td>{{item.questionCount}}</td>
+        <td>
+          <a [routerLink]="['/admin/question-exam/'+item.id]" routerLinkActive="router-link-active"
+            class="btn btn-outline-warning">
+            Danh sách
+          </a>
+        </td>
+        <td>
+          <button (click)="deleteExam(item.id)" class="btn btn-outline-danger">
+            Xóa đề thi
+          </button>
+        </td>
+        <td>
+          <a [routerLink]="['/admin/test-exam/'+item.id]" routerLinkActive="router-link-active"
+            class="btn btn-outline-primary">
+            Danh sách
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="TotalPage > 1">
+    <app-paging [totalPage]="TotalPage" [currentPage]="urlQuery.pageNumber"
+      (changePage)="ChangePageHandlerTeacher($event)"></app-paging>
+  </div>
+</div>
+<!-- <br>
+<button [routerLink]="['/exam/add-exam/']" routerLinkActive="router-link-active" class="btn btn-outline-primary">
+  Thêm đề thi
+</button> -->
+
+<app-notification></app-notification>
+<app-footer></app-footer>

@@ -1,0 +1,68 @@
+<app-header></app-header>
+<div style="    margin: 100px 50px;">
+  <h2>Danh sách câu hỏi:</h2>
+  <div *ngIf="total == 0">
+    <h2 style="font-size: 30px;">Đề thi rỗng</h2>
+  </div>
+  <div *ngIf="total > 0">
+    <!-- <app-search [textSearch]="urlQuery.keyword" (search)="GetListQuestionOfExam($event)"></app-search> -->
+    <div *ngFor="let question of ListQuestionAnswer; let i = index">
+      <div class="row pt-2 border-top ">
+        <div class="col-10 ">
+          <div *ngIf="question.result.typeId==1">
+            <div class="py-2 h5"><b>Câu {{i+1}}: {{question.result.questionContent}}</b></div>
+            <div *ngFor="let answer of question.result.listAnswers" class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3"
+              id="options">
+              <div style="display: inline-block;">
+                <div *ngIf="answer.rightAnswer">
+                  <input type="radio" checked="true" value="{{answer.id}}" [name]="question.result.id"> <span
+                    class="checkmark"></span>
+                </div>
+                <div *ngIf="!answer.rightAnswer">
+                  <input type="radio" value="{{answer.id}}" [name]="question.result.id"> <span class="checkmark"></span>
+                </div>
+              </div>
+              <label class="options">{{answer.answerContent}}</label>
+            </div>
+          </div>
+          <div *ngIf="question.result.typeId==2">
+            <!-- <div class="py-2 h5"><b>Câu: {{(urlQuery.pageNumber-1)*urlQuery.pageSize + i+1}} {{question.questionContent}}</b></div> -->
+            <div *ngFor="let answer of question.result.listAnswers" class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3"
+              id="options">
+
+              <div style="display: inline-block;">
+                <div *ngIf="answer.rightAnswer">
+                  <input type="checkbox" checked=true value="{{answer.id}}" [name]="question.result.id"> <span
+                    class="checkboxmark"></span>
+                </div>
+                <div *ngIf="!answer.rightAnswer">
+                  <input type="checkbox" value="{{answer.id}}" [name]="question.result.id"> <span
+                    class="checkboxmark"></span>
+                </div>
+              </div>
+              <label class="options">{{answer.answerContent}}
+
+              </label>
+            </div>
+          </div>
+          <!-- <div>{{question.result.level.levelName}}</div> -->
+        </div>
+        <div class="col-2 d-flex btn-modify">
+          <a [routerLink]="['/exam/question/update-question/'+ question.result.id]"
+            class="btn btn-light btn-outline-dark ml-5 mx-3">Sửa</a>
+          <a onclick="location.reload();" (click)="deleteQuestion(question.result.id)"
+            class="btn btn-light btn-outline-dark mx-3">Xóa</a>
+          <a [routerLink]="['/exam/question/question-detail/'+ question.result.id]"
+            class="btn btn-light btn-outline-dark mx-3">Chi tiết</a>
+          <!-- <button type="submit" (click)="deleteQuestion(question.result.id)">Xóa</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <a [routerLink]="['/exam/question/add-question/']" class="btn btn-light btn-outline-dark "
+    style="margin: 10px 0 20px 70px;">Thêm câu hỏi</a>
+
+  <a [routerLink]="['/exam']" class="btn btn-danger" style="margin: -10px 0 0 50px;">Back</a>
+</div>
+<app-footer></app-footer>

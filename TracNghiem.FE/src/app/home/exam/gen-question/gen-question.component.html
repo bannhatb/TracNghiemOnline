@@ -1,0 +1,26 @@
+<app-header></app-header>
+<div class="main">
+  <h2 style="text-align: center; font-size: 40px;">Tạo câu hỏi</h2>
+  <form [formGroup]="formGen">
+    <div class="form-group">
+      <label>
+        Upload file word
+        <input type="file" (change)="onSelectFile($event)" placeholder="Upload file" formControlName="file">
+      </label>
+      <label>
+        Dấu phân biệt giữa câu hỏi và nội dung :
+        <input type="text" placeholder="ví dụ: . ) ..." formControlName="splitQuestion">
+      </label>
+      <label>
+        Dấu hiệu câu đúng :
+        <input type="text" placeholder="ví dụ: $ ở cuối câu" formControlName="rightMark">
+      </label>
+      <br>
+      <button type="submit" (click)="Submit()" class="btn btn-outline-success" style="margin-bottom: 10px;">Tạo</button>
+      <br>
+      <a [routerLink]="['/exam/']" routerLinkActive="router-link-active" class="btn btn-outline-danger">Back</a>
+    </div>
+  </form>
+  <app-notification></app-notification>
+</div>
+<app-footer></app-footer>

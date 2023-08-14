@@ -1,0 +1,31 @@
+<app-header></app-header>
+<h2 style="font-size: 40px; margin: 0 auto;">Danh sách cuộc thi bạn đã tạo</h2>
+<div style="margin:10px;">
+  <table class="table-bordered table-hover" style="font-weight:500">
+    <thead>
+      <td>Mã test</td>
+      <td>Tiêu đề</td>
+      <td>Thời gian bắt đầu</td>
+      <td>Thời gian kết thúc</td>
+      <td>Số câu hỏi</td>
+      <td>Thời gian làm bài</td>
+      <td>Mật khẩu ca thi</td>
+      <td>Số người làm</td>
+      <td>Thống kê</td>
+    </thead>
+    <tr *ngFor="let test of data">
+      <td>{{test.testId}}</td>
+      <td>{{test.title}}</td>
+      <td>{{test.startAt}}</td>
+      <td>{{test.endAt}}</td>
+      <td>{{test.questionCount}}</td>
+      <td>{{test.time}} phút</td>
+      <td>{{test.password}}</td>
+      <td>{{test.countDo}}</td>
+      <td><a class="btn btn-outline-success" [routerLink]="['/exam/analysis-result/', test.testId]">Điểm</a></td>
+    </tr>
+  </table>
+  <br>
+  <button type="submit" name="back" class="btn btn-danger" [routerLink]="['/exam/']">Back</button>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,47 @@
+<div class="px-5">
+  <ul class="pagination">
+    <ng-template [ngIf]="currentPage ==1">
+      <li class="page-item disabled">
+        <a class="page-link">Previous</a>
+      </li>
+    </ng-template>
+    <ng-template [ngIf]="currentPage !=1">
+      <li class="page-item">
+        <a class="page-link"  (click)="changePage.emit(currentPage-1)">Previous</a>
+      </li>
+    </ng-template>
+
+    <ng-template [ngIf]="currentPage  > 3">
+      <li class="page-item">
+        <a class="page-link" (click)="changePage.emit(1)">1</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" (click)="changePage.emit(currentPage-1)">...</a>
+      </li>
+    </ng-template>
+
+    <li class="page-item" *ngFor="let page of caculatePage()">
+        <!-- <a class="page-link active" [ngIf]="page == currentPage" (click)="changePage.emit(page)">{{page}}</a> -->
+        <a class="page-link" [ngClass]="{'activeLink' : page == currentPage}" (click)="changePage.emit(page)">{{page}}</a>
+    </li>
+    <ng-template [ngIf]="currentPage  < totalPage-3">
+      <li class="page-item">
+        <a class="page-link" (click)="changePage.emit(currentPage+1)">...</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" (click)="changePage.emit(totalPage)">{{totalPage}}</a>
+      </li>
+    </ng-template>
+
+    <ng-template [ngIf]="currentPage ==totalPage">
+      <li class="page-item disabled">
+        <a class="page-link">Next</a>
+      </li>
+    </ng-template>
+    <ng-template [ngIf]="currentPage !=totalPage">
+      <li class="page-item">
+        <a class="page-link" (click)="changePage.emit(currentPage+1)">Next</a>
+      </li>
+    </ng-template>
+  </ul>
+</div>
